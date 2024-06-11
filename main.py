@@ -28,6 +28,7 @@ turtle.shape(image)
 state_list = states.state.to_list()
 correct_guess = []
 
+
 game_over = False
 while not game_over:
 
@@ -37,9 +38,13 @@ while not game_over:
     elif len(correct_guess) != 0:
         answer = screen.textinput(title=f"{len(correct_guess)}/50", prompt="Name a state").title()
 
-    # confirm that their answer is correctohioo
+    # confirm that their answer is correct
 
     if answer == "Exit":
+        missing_states = []
+        for state in state_list:
+            if state not in correct_guess:
+                missing_states.append(state)
         break
 
     if answer in state_list:
@@ -58,3 +63,9 @@ while not game_over:
             screen.textinput(prompt="Congrats you got them all")
 
 
+
+# states to learn csv
+
+# not in correct guesses but in state_list
+states_to_learn = pd.DataFrame(missing_states)
+states_to_learn.to_csv("States_to_learn.csv")
