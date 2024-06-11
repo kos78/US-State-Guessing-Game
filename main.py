@@ -41,10 +41,9 @@ while not game_over:
     # confirm that their answer is correct
 
     if answer == "Exit":
-        missing_states = []
-        for state in state_list:
-            if state not in correct_guess:
-                missing_states.append(state)
+        missing_states = [state for state in state_list if state not in correct_guess ]
+        states_to_learn = pd.DataFrame(missing_states)
+        states_to_learn.to_csv("States_to_learn.csv")
         break
 
     if answer in state_list:
@@ -67,5 +66,4 @@ while not game_over:
 # states to learn csv
 
 # not in correct guesses but in state_list
-states_to_learn = pd.DataFrame(missing_states)
-states_to_learn.to_csv("States_to_learn.csv")
+
