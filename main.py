@@ -32,12 +32,15 @@ game_over = False
 while not game_over:
 
     if len(correct_guess) == 0:
-        answer = screen.textinput(title="Guess a state", prompt="Name a state?")
+        answer = screen.textinput(title="Guess a state", prompt="Name a state?").title()
 
     elif len(correct_guess) != 0:
-        answer = screen.textinput(title=f"{len(correct_guess)}/50", prompt="Name a state")
+        answer = screen.textinput(title=f"{len(correct_guess)}/50", prompt="Name a state").title()
 
     # confirm that their answer is correctohioo
+
+    if answer == "Exit":
+        break
 
     if answer in state_list:
         # name of the state should go to the state coord
@@ -54,4 +57,4 @@ while not game_over:
             game_over = True
             screen.textinput(prompt="Congrats you got them all")
 
-screen.exitonclick()
+
